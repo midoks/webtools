@@ -22,4 +22,4 @@ lerna-debug.log*
 # temp directory
 .temp
 .tmp
-layui/.DS_Store
+.DS_Store
