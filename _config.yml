@@ -1,0 +1,67 @@
+permalink: /:year/:month/:day/:title.html
+
+
+exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
+
+highlighter: rouge
+auto: true
+baseurl:
+
+gems: [jekyll-paginate]
+paginate: 15
+paginate_path: "blog/page:num"
+
+
+destination: ./._site
+plugins_dir: ./_plugins
+markdown:  kramdown
+
+rdiscount:
+  extensions: []
+
+redcarpet:
+  extensions: []
+
+kramdown:
+  auto_ids:       true
+  footnote_nr:    1
+  entity_output:  as_char
+  toc_levels:     1..6
+  smart_quotes:   lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+
+  syntax_highlighter_opts:
+    wrap: div
+    line_numbers: inline
+    line_numbers_start: 1
+    tab_width: 4
+    bold_every: 10
+    css: style
+
+redcloth:
+  hard_breaks: true
+
+production_url : https://webtools.cachecha.com
+short_name : midoks
+
+tagline: 前端开发，javascript，html，css，ajax，用户体验，交互设计
+feed: /atom.xml
+index_path : /index.html
+archive_path: /archive.html
+categories_path : /cat.html
+tags_path : /tags.html
+about_path : /about.html
+
+#基本参数
+title: midoks
+res_url : https://webtools.cachecha.com/public
+categories: [test, sample]
+author :
+  name : midoks
+  email : midoks@163.com
+  github : midoks@github.com
+  weibo : http://weibo.com/midoks
+  weixin : weiyuchuxia
+  feedburner : feedname
+  keywords : PHP程序猿
+  description: 学习－再学习
