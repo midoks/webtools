@@ -1,16 +1,98 @@
-<div class="body" style="margin-top:55px;">
-    <div class="container">
-        <div class="row">
-            <!-- 主要内容显示 -->
-            <div class="col-md-12 left">
-                <h4><a href=""></a></h4>
-                <div class="content">
-                </div>
-                <hr/>
-            </div>
-            <!-- sider -->
-            <div class="col-md-4 right">
-            </div>
+
+<div class="container">
+    <div class="header">
+        <h1>📋 JSON格式化工具</h1>
+        <p>美化和验证JSON数据</p>
+    </div>
+
+    <div class="tool-container" style="text-align: center;">
+        <div class="input-section">
+            <div class="section-title">输入JSON数据：</div>
+            <textarea id="jsonInput" placeholder="请输入需要格式化的JSON数据..."></textarea>
+            <div id="inputError" class="error" style="display: none;"></div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn" onclick="formatJSON()">格式化</button>
+            <button class="btn" onclick="minifyJSON()">压缩</button>
+            <button class="btn" onclick="clearAll()">清空</button>
+            <button class="btn" onclick="copyResult()">复制结果</button>
+        </div>
+
+        <div class="output-section">
+            <div class="section-title">格式化结果：</div>
+            <textarea id="jsonOutput" readonly></textarea>
         </div>
     </div>
 </div>
+
+<script>
+function formatJSON() {
+    const input = document.getElementById('jsonInput').value.trim();
+    const output = document.getElementById('jsonOutput');
+    const errorDiv = document.getElementById('inputError');
+    
+    if (!input) {
+        showError('请输入JSON数据');
+        return;
+    }
+    
+    try {
+        const parsed = JSON.parse(input);
+        output.value = JSON.stringify(parsed, null, 2);
+        hideError();
+    } catch (error) {
+        showError('JSON格式错误: ' + error.message);
+        output.value = '';
+    }
+}
+
+function minifyJSON() {
+    const input = document.getElementById('jsonInput').value.trim();
+    const output = document.getElementById('jsonOutput');
+    const errorDiv = document.getElementById('inputError');
+    
+    if (!input) {
+        showError('请输入JSON数据');
+        return;
+    }
+    
+    try {
+        const parsed = JSON.parse(input);
+        output.value = JSON.stringify(parsed);
+        hideError();
+    } catch (error) {
+        showError('JSON格式错误: ' + error.message);
+        output.value = '';
+    }
+}
+
+function clearAll() {
+    document.getElementById('jsonInput').value = '';
+    document.getElementById('jsonOutput').value = '';
+    hideError();
+}
+
+function copyResult() {
+    const output = document.getElementById('jsonOutput');
+    if (output.value) {
+        output.select();
+        document.execCommand('copy');
+        alert('结果已复制到剪贴板');
+    } else {
+        alert('没有可复制的内容');
+    }
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('inputError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function hideError() {
+    const errorDiv = document.getElementById('inputError');
+    errorDiv.style.display = 'none';
+}
+</script>
+
